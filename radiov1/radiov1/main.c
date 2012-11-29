@@ -43,8 +43,8 @@ i2c_init();
 setFreq();
 i2c_write8(i2cAddress << 1);
 //while(1) {
-  i2c_write8(0x2h);
-  i2c_write8(0x7f);
+  i2c_write8(0x20); //command to control B0
+  i2c_write8(0x7f); // port B0 is on
 
 //}
   i2c_stop();
