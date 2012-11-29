@@ -1,6 +1,8 @@
 #include <msp430g2231.h>
 #include "i2c.h"
 
+unsigned char i2cAddress = 0x11;
+
 void setFreq() //~4158 Hz
 {
   unsigned int oct = 2;
@@ -14,8 +16,9 @@ void setFreq() //~4158 Hz
 
   i2c_start();
   i2c_write8(i2cAddress << 1);
-  i2c_write8(high);
-  i2c_write8(low);
+  i2c_write8(0x01);
+  i2c_write8(0x00);
+  i2c_write8(0x05);
   i2c_stop();
 }
 
@@ -37,7 +40,7 @@ P1OUT &= ~0x04;
 // set port 1.4 HIGH (SEN)
 P1OUT |= 0x10;
 
-unsigned char i2cAddress = 0x11;
+
 i2c_init();
 setFreq();
 /*
